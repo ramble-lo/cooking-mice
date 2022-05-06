@@ -5,7 +5,8 @@ import HomeScreen from './src/stacks/Home';
 import SettingScreen from './src/stacks/Setting';
 import CardBoxScreen from './src/stacks/CardBox';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import {SafeAreaProvider, SafeAreaView} from 'react-native-safe-area-context';
+import {SafeAreaProvider} from 'react-native-safe-area-context';
+import {Button} from 'react-native';
 export type RootStackParams = {
   HomeStack: any;
   SettingStack: {
@@ -29,14 +30,34 @@ const HomeStack = createNativeStackNavigator<HomeStackParams>();
 
 const HomeScreenStack = () => {
   return (
+    // <HomeStack.Navigator
+    //   initialRouteName="Home"
+    //   screenOptions={() => ({
+    //     headerShown: true,
+    //     headerRight: () =>
+    //       route.name === 'CardBox' && (
+    //         <Button title={'edit'} onPress={() => console.log('a')} />
+    //       ),
+    //   })}>
     <HomeStack.Navigator
       initialRouteName="Home"
       screenOptions={() => ({
-        headerShown: false,
+        headerShown: true,
+        headerRight: () => (
+          <Button title={'edit'} onPress={() => console.log('a')} />
+        ),
       })}>
-      <HomeStack.Screen name="Home" component={HomeScreen} />
-      <HomeStack.Screen name="Setting" component={SettingScreen} />
-      <HomeStack.Screen name="CardBox" component={CardBoxScreen} />
+      <HomeStack.Screen
+        name="Home"
+        component={HomeScreen}
+        options={{headerShown: false}}
+      />
+      <HomeStack.Screen name="Setting" component={SettingScreenStack} />
+      <HomeStack.Screen
+        name="CardBox"
+        component={CardBoxScreenStack}
+        options={{headerShown: false}}
+      />
     </HomeStack.Navigator>
   );
 };
@@ -52,7 +73,11 @@ const SettingStack = createNativeStackNavigator<SettingStackParams>();
 
 const SettingScreenStack = () => {
   return (
-    <SettingStack.Navigator initialRouteName="Setting">
+    <SettingStack.Navigator
+      initialRouteName="Setting"
+      screenOptions={() => ({
+        headerShown: false,
+      })}>
       <SettingStack.Screen name="Setting" component={SettingScreen} />
     </SettingStack.Navigator>
   );
@@ -69,7 +94,11 @@ const CardBoxStack = createNativeStackNavigator<CardBoxStackParams>();
 
 const CardBoxScreenStack = () => {
   return (
-    <CardBoxStack.Navigator initialRouteName="CardBox">
+    <CardBoxStack.Navigator
+      initialRouteName="CardBox"
+      screenOptions={() => ({
+        headerShown: false,
+      })}>
       <CardBoxStack.Screen name="CardBox" component={CardBoxScreen} />
     </CardBoxStack.Navigator>
   );

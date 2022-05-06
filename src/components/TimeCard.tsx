@@ -1,16 +1,16 @@
-import React from 'react'
-import {View, Text, TouchableOpacity} from 'react-native'
+import React from 'react';
+import {Text, TouchableOpacity} from 'react-native';
 
 interface Props {
-    name:string,
-    onPress: () => void
+  name: string;
+  onPress: () => void;
 }
-const TimeCard: React.FC<Props> = ({name, onPress }) => {
+const TimeCard: React.FC<Props> = ({name, onPress}) => {
   return (
-    <TouchableOpacity onPress = {onPress} >
-        <Text>{name}</Text>
+    <TouchableOpacity onPress={onPress}>
+      <Text>{name}</Text>
     </TouchableOpacity>
-  )
-}
+  );
+};
 
-export default TimeCard
+export default TimeCard;
